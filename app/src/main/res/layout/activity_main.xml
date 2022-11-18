@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Assignment2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Salmon"
+        android:gravity="start"
+        android:minHeight="20dp"
+        android:paddingVertical="15dp"
+        android:text="@string/assignment_2"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-2dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/product_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="68dp"
+        android:gravity="center"
+        android:hint="@string/product_type"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Assignment2"
+
+        />
+
+    <Button
+        android:id="@+id/onebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="1"
+        app:layout_constraintEnd_toStartOf="@+id/twobut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/product_id" />
+
+    <Button
+        android:id="@+id/twobut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="2"
+        app:layout_constraintEnd_toStartOf="@+id/threebut"
+        app:layout_constraintStart_toEndOf="@+id/onebut"
+        app:layout_constraintTop_toBottomOf="@id/product_id" />
+
+    <Button
+        android:id="@+id/threebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="3"
+        app:layout_constraintStart_toEndOf="@+id/twobut"
+        app:layout_constraintTop_toBottomOf="@id/product_id"
+        app:layout_constraintVertical_chainStyle="packed"
+
+
+
+        />
+
+    <Button
+        android:id="@+id/fourbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="4"
+        app:layout_constraintEnd_toStartOf="@+id/fivebut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/onebut" />
+
+    <Button
+        android:id="@+id/fivebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="5"
+        app:layout_constraintEnd_toStartOf="@+id/sixbut"
+        app:layout_constraintStart_toEndOf="@+id/fourbut"
+        app:layout_constraintTop_toBottomOf="@id/twobut" />
+
+    <Button
+        android:id="@+id/sixbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="6"
+        app:layout_constraintStart_toEndOf="@+id/fivebut"
+        app:layout_constraintTop_toBottomOf="@id/threebut"
+        app:layout_constraintVertical_chainStyle="packed"
+
+        />
+    <Button
+        android:id="@+id/sevenbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="7"
+        app:layout_constraintEnd_toStartOf="@+id/fivebut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fourbut" />
+
+    <Button
+        android:id="@+id/eightbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="8"
+        app:layout_constraintEnd_toStartOf="@+id/sixbut"
+        app:layout_constraintStart_toEndOf="@+id/fourbut"
+        app:layout_constraintTop_toBottomOf="@id/fivebut" />
+
+    <Button
+        android:id="@+id/ninebut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="9"
+        app:layout_constraintStart_toEndOf="@+id/fivebut"
+        app:layout_constraintTop_toBottomOf="@id/sixbut"
+        app:layout_constraintVertical_chainStyle="packed"
+
+        />
+
+
+    <Button
+        android:id="@+id/zerobut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="0"
+        app:layout_constraintEnd_toStartOf="@+id/fivebut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sevenbut" />
+
+    <Button
+        android:id="@+id/clearbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="C"
+        app:layout_constraintEnd_toStartOf="@+id/sixbut"
+        app:layout_constraintStart_toEndOf="@+id/fourbut"
+        app:layout_constraintTop_toBottomOf="@id/eightbut" />
+    />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/teal_200"
+        android:minHeight="100dp"
+        android:text="BUY"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@id/threebut"
+        tools:layout_editor_absoluteY="176dp"
+        app:layout_constraintBottom_toBottomOf="@id/clearbut"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
