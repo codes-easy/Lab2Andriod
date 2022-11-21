@@ -28,8 +28,8 @@
         android:id="@+id/product_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:hint="@string/product_type"
         android:textSize="20sp"
@@ -43,9 +43,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/teal_200"
-        android:text="1"
+        android:text="@string/_1"
         app:layout_constraintEnd_toStartOf="@+id/twobut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/product_id" />
@@ -54,9 +54,9 @@
         android:id="@+id/twobut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/teal_200"
-        android:text="2"
+        android:text="@string/_2"
         app:layout_constraintEnd_toStartOf="@+id/threebut"
         app:layout_constraintStart_toEndOf="@+id/onebut"
         app:layout_constraintTop_toBottomOf="@id/product_id" />
@@ -65,9 +65,9 @@
         android:id="@+id/threebut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_marginTop="20dp"
+         android:layout_marginTop="40dp"
         android:backgroundTint="@color/teal_200"
-        android:text="3"
+        android:text="@string/_3"
         app:layout_constraintStart_toEndOf="@+id/twobut"
         app:layout_constraintTop_toBottomOf="@id/product_id"
         app:layout_constraintVertical_chainStyle="packed"
@@ -83,7 +83,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="4"
+        android:text="@string/_4"
         app:layout_constraintEnd_toStartOf="@+id/fivebut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/onebut" />
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="5"
+        android:text="@string/_5"
         app:layout_constraintEnd_toStartOf="@+id/sixbut"
         app:layout_constraintStart_toEndOf="@+id/fourbut"
         app:layout_constraintTop_toBottomOf="@id/twobut" />
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="6"
+        android:text="@string/_6"
         app:layout_constraintStart_toEndOf="@+id/fivebut"
         app:layout_constraintTop_toBottomOf="@id/threebut"
         app:layout_constraintVertical_chainStyle="packed"
@@ -118,7 +118,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="7"
+        android:text="@string/_7"
         app:layout_constraintEnd_toStartOf="@+id/fivebut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fourbut" />
@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="8"
+        android:text="@string/_8"
         app:layout_constraintEnd_toStartOf="@+id/sixbut"
         app:layout_constraintStart_toEndOf="@+id/fourbut"
         app:layout_constraintTop_toBottomOf="@id/fivebut" />
@@ -140,7 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="9"
+        android:text="@string/_9"
         app:layout_constraintStart_toEndOf="@+id/fivebut"
         app:layout_constraintTop_toBottomOf="@id/sixbut"
         app:layout_constraintVertical_chainStyle="packed"
@@ -155,7 +155,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="0"
+        android:text="@string/_0"
         app:layout_constraintEnd_toStartOf="@+id/fivebut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sevenbut" />
@@ -166,25 +166,77 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:backgroundTint="@color/teal_200"
-        android:text="C"
+        android:text="@string/c"
         app:layout_constraintEnd_toStartOf="@+id/sixbut"
         app:layout_constraintStart_toEndOf="@+id/fourbut"
         app:layout_constraintTop_toBottomOf="@id/eightbut" />
-    />
+
+
+    <TextView
+        android:id="@+id/totalbut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="@color/white"
+        android:hint="@string/total"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/buybut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_id"
+        app:layout_constraintVertical_bias="0.102" />
 
     <Button
+        android:id="@+id/buybut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:backgroundTint="@color/teal_200"
+        android:gravity="right"
         android:minHeight="100dp"
-        android:text="BUY"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@id/threebut"
-        tools:layout_editor_absoluteY="176dp"
+        android:text="@string/buy"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@id/clearbut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/threebut"
+
+
+        tools:ignore="RtlHardcoded" />
+
+
+    <TextView
+        android:id="@+id/QtyBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="@string/quantity"
+        app:layout_constraintTop_toBottomOf="@+id/clearbut"
+        tools:layout_editor_absoluteX="25dp"
+        android:text="@string/quantity1"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="40dp"
+
 
         />
+<ListView
+    android:id="@+id/listview1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:divider="@color/white"
+    android:dividerHeight="1dp"
+    android:layout_marginTop="20dp"
+    app:layout_constraintTop_toBottomOf="@id/QtyBut"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:listSelector="@color/gray">
+
+
+
+
+
+</ListView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
