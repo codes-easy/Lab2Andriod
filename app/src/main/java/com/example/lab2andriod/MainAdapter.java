@@ -50,7 +50,10 @@ public class MainAdapter extends BaseAdapter {
 
         TextView listname1 = rowView.findViewById(R.id.list_item1);
         listname1.setText(list.get(i).getName());
-
+        TextView listname2 = rowView.findViewById(R.id.list_item2);
+        listname2.setText(String.valueOf(list.get(i).getQty()));
+        TextView listname3 = rowView.findViewById(R.id.list_item3);
+        listname3.setText(String.valueOf(list.get(i).getPrice()));
 
 
 
