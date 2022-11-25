@@ -1,8 +1,10 @@
 package com.example.lab2andriod;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.service.autofill.OnClickAction;
@@ -10,19 +12,24 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-    implements View.OnClickListener {
+    implements View.OnClickListener, AdapterView.OnItemClickListener {
     Button one,two,three,four,five,six,seven,eight,nine,zero,buy,clear, managerBtn;
     TextView Producttype, total, qtytype;
 
     String MERGE ="";
     ArrayList<Product> list;
     ListView listView1;
+    int Itemindex = 0;
+    String regex = "[0-9]+";
+    MainAdapter mainAdapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +41,17 @@ public class MainActivity extends AppCompatActivity
         listView1 = findViewById(R.id.listview_products);
 
 
-         Product p1=new Product("Pants",20.44, 10);
-        Product p2= new Product("Shoes",10.44, 10);
-        Product p3=new Product("Hats",5.9, 10);
+        Product p1=new Product("Pants",20.44, 10);
+        Product p2= new Product("Shoes",10.44, 100);
+        Product p3=new Product("Hats",5.9, 30);
 
         list.add(p1);
         list.add(p2);
         list.add(p3);
-        MainAdapter mainAdapter1 = new MainAdapter(MainActivity.this,list);
-        listView1.setAdapter((ListAdapter) mainAdapter1);
+
+       // mainAdapter1 = new MainAdapter(MainActivity.this,list);
+        //listView1.setAdapter((ListAdapter) mainAdapter1);
+        ImplementAdeptor();
 
         one = findViewById(R.id.onebut);
         two = findViewById(R.id.twobut);
@@ -73,28 +82,81 @@ public class MainActivity extends AppCompatActivity
         nine.setOnClickListener(this);
         zero.setOnClickListener(this);
         clear.setOnClickListener(this);
-        Producttype.setOnClickListener(this);
-        qtytype.setOnClickListener(this);
+        //Producttype.setOnClickListener(this);
+        //qtytype.setOnClickListener(this);
         buy.setOnClickListener(this);
-        total.setOnClickListener(this);
-
+        //total.setOnClickListener(this);
+        listView1.setOnItemClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
         Button button = (Button) view;
-        String num1 = button.getText().toString();
-        MERGE = MERGE+num1;
+        String qtytopurchase = button.getText().toString();
+        MERGE = MERGE + qtytopurchase;
 
-        qtytype.setText(MERGE);
-       /* TextView numq = (TextView) view;
+        if (qtytopurchase.equals(clear.getText())) {
+            qtytype.setText("");
+            MERGE="";
+            total.setText("");
+            Producttype.setText("");
 
-        String numq = qtytype.getText().toString();
-        String num = num1+numq;
-        qtytype.setText(numq);*/
+        } else if (qtytopurchase.matches(regex)) {
+            qtytype.setText(MERGE);
+
+        }
+        if(button.equals(buy)){
+            double TotalPrice = Double.parseDouble(qtytype.getText().toString()) * list.get(Itemindex).getPrice();
 
 
+            int newQty =  (list.get(Itemindex).qty - Integer.parseInt(qtytype.getText().toString()));
+            //Toast.makeText(this, ((String) ("New qty " + newQty)), Toast.LENGTH_LONG).show();
+
+
+            //new Product("Pants",20.44, 10)
+            list.set(Itemindex,
+                    new Product(list.get(Itemindex).getName(), list.get(Itemindex).getPrice(),newQty > 0 ?newQty : 0));
+
+            if (newQty < 0) {
+                Toast.makeText(this, "Wrong qty.", Toast.LENGTH_LONG).show();
+            }
+            else {
+                showAlert(TotalPrice, qtytype.getText().toString());
+                ImplementAdeptor();
+
+               total.setText(""+TotalPrice);
+            }
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       Producttype.setText(list.get(position).getName());
+       Itemindex = position;
 
     }
+    private void showAlert(double  TotalPrice,String Qty) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your purchase is " + Qty + " " + list.get(Itemindex).getName() + " for $" + String.format("%.2f", TotalPrice))
+                .setTitle("Thank You for your purchase");
+
+         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+                Button btnClickMe = (Button) findViewById(R.id.clearbut);
+                btnClickMe.performClick();
+
+            }
+        });
+
+        builder.show();
+    }
+
+    private void ImplementAdeptor(){
+        mainAdapter1 = new MainAdapter(MainActivity.this,list);
+        listView1.setAdapter((ListAdapter) mainAdapter1);
+    }
+
+
 }
