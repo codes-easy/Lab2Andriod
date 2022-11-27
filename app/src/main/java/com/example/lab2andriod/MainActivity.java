@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.service.autofill.OnClickAction;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -26,12 +28,10 @@ public class MainActivity extends AppCompatActivity
 
     String MERGE ="";
     ArrayList<Product> list;
+    ArrayList<HistoryList> histoty_list = new ArrayList<>();
+    String regex = "[0-9]+";
     ListView listView1;
     int Itemindex = 0;
-    String regex = "[0-9]+";
-    MainAdapter mainAdapter1;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity
         qtytype = findViewById(R.id.QtyBut);
         Producttype = findViewById(R.id.product_id);
         total = findViewById(R.id.totalbut);
+        managerBtn =findViewById(R.id.managerbutton);
 
 
 
@@ -87,8 +88,9 @@ public class MainActivity extends AppCompatActivity
         buy.setOnClickListener(this);
         //total.setOnClickListener(this);
         listView1.setOnItemClickListener(this);
+        managerBtn.setOnClickListener(this);
 
-    }
+            }
 
     @Override
     public void onClick(View view) {
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity
 
         if (qtytopurchase.equals(clear.getText())) {
             qtytype.setText("");
-            MERGE="";
+            MERGE = "";
             total.setText("");
             Producttype.setText("");
 
@@ -106,27 +108,39 @@ public class MainActivity extends AppCompatActivity
             qtytype.setText(MERGE);
 
         }
-        if(button.equals(buy)){
+        if (button.equals(buy)) {
             double TotalPrice = Double.parseDouble(qtytype.getText().toString()) * list.get(Itemindex).getPrice();
 
 
-            int newQty =  (list.get(Itemindex).qty - Integer.parseInt(qtytype.getText().toString()));
+            int newQty = (list.get(Itemindex).qty - Integer.parseInt(qtytype.getText().toString()));
             //Toast.makeText(this, ((String) ("New qty " + newQty)), Toast.LENGTH_LONG).show();
 
 
             //new Product("Pants",20.44, 10)
             list.set(Itemindex,
-                    new Product(list.get(Itemindex).getName(), list.get(Itemindex).getPrice(),newQty > 0 ?newQty : 0));
+                    new Product(list.get(Itemindex).getName(), list.get(Itemindex).getPrice(), newQty > 0 ? newQty : 0));
+
 
             if (newQty < 0) {
                 Toast.makeText(this, "Wrong qty.", Toast.LENGTH_LONG).show();
-            }
-            else {
+            } else {
                 showAlert(TotalPrice, qtytype.getText().toString());
                 ImplementAdeptor();
 
-               total.setText(""+TotalPrice);
+                total.setText("" + TotalPrice);
+
+                HistoryList h1 = new HistoryList(list.get(Itemindex).getName(),
+                        TotalPrice, Integer.parseInt(qtytype.getText().toString()), new Date().toString());
+
+                histoty_list.add(h1);
             }
+        }
+        if (button.equals(managerBtn)) {
+
+            Intent firstIntent = new Intent(MainActivity.this, ManagerActivity.class);
+            startActivity(firstIntent);
+            firstIntent.putExtra("HISTORYDATA", histoty_list);
+            // startActivity(firstIntent);
         }
     }
 
@@ -138,23 +152,21 @@ public class MainActivity extends AppCompatActivity
     }
     private void showAlert(double  TotalPrice,String Qty) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Your purchase is " + Qty + " " + list.get(Itemindex).getName() + " for $" + String.format("%.2f", TotalPrice))
+        builder.setMessage("Your purchase is " + Qty + " " + list.get(Itemindex).getName() +
+                        " for $" + String.format("%.2f", TotalPrice))
                 .setTitle("Thank You for your purchase");
-
          builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
                 Button btnClickMe = (Button) findViewById(R.id.clearbut);
                 btnClickMe.performClick();
 
             }
         });
-
         builder.show();
     }
 
     private void ImplementAdeptor(){
-        mainAdapter1 = new MainAdapter(MainActivity.this,list);
+        MainAdapter mainAdapter1 = new MainAdapter(MainActivity.this, list);
         listView1.setAdapter((ListAdapter) mainAdapter1);
     }
 
