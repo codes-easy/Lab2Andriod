@@ -26,17 +26,20 @@ public class Historyactivity extends AppCompatActivity  implements HistoryRecycl
         recyclerView.setLayoutManager(llm);
         adapter.listener=this;
         recyclerView.setAdapter(adapter);
-
-
-
-
-
-
     }
 
     @Override
-    public void onItemClicked(int P) {
+    public void onItemClicked(int P) { gotoNextActivity(P);}
 
+    private void gotoNextActivity(int P) {
+        Intent intent=new Intent(Historyactivity.this,DetailHistoryActivity.class);
+        intent.putExtra("Index", P);
+        startActivity(intent);
+    }
+}
 
     }
+
+
+}
 }
