@@ -22,4 +22,5 @@
     <string name="pants">Pants</string>
     <string name="Price_pants">20.44</string>
     <string name="Qty_pants">10</string>
+    <string name="_10">10</string>
 </resources>

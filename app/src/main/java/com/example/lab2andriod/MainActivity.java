@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity
         Button button = (Button) view;
         String qtytopurchase = button.getText().toString();
         MERGE = MERGE + qtytopurchase;
-
+        HistoryList h1 ;
         if (qtytopurchase.equals(clear.getText())) {
             qtytype.setText("");
             MERGE = "";
@@ -129,18 +130,21 @@ public class MainActivity extends AppCompatActivity
 
                 total.setText("" + TotalPrice);
 
-                HistoryList h1 = new HistoryList(list.get(Itemindex).getName(),
+                 h1 = new HistoryList(list.get(Itemindex).getName(),
                         TotalPrice, Integer.parseInt(qtytype.getText().toString()), new Date().toString());
 
                 histoty_list.add(h1);
+
             }
         }
         if (button.equals(managerBtn)) {
 
+            ((StoreHistoryData) getApplication()).setData(histoty_list);
+            ((StoreHistoryData) getApplication()).setSize(histoty_list.size());
+
             Intent firstIntent = new Intent(MainActivity.this, ManagerActivity.class);
             startActivity(firstIntent);
-            firstIntent.putExtra("HISTORYDATA", histoty_list);
-            // startActivity(firstIntent);
+            //firstIntent.putExtra("HISTORYDATA", histoty_list);
         }
     }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,14 +14,15 @@ import java.util.ArrayList;
 
 public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAdapter.myViewHolder> {
 
+
     interface ItemListener {
-        void    onItemClicked(int P);
+        void onItemClicked(int P);
 
     }
 
     ArrayList<HistoryList>list;
     Context C;
-    ItemListener itemListener;
+    ItemListener listener;
 
     public HistoryRecycleAdapter(ArrayList<HistoryList> list, Context C){
         this.list = list;
@@ -28,34 +30,13 @@ public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAd
 
     }
 
-
-    /**
-     * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
-     * an item.
-     * <p>
-     * This new ViewHolder should be constructed with a new View that can represent the items
-     * of the given type. You can either create a new View manually or inflate it from an XML
-     * layout file.
-     * <p>
-     * The new ViewHolder will be used to display items of the adapter using
-     * {@link # onBindViewHolder(ViewHolder, int, List)}. Since it will be re-used to display
-     * different items in the data set, it is a good idea to cache references to sub views of
-     * the View to avoid unnecessary {@link View # findViewById(int)} calls.
-     *
-     * @param parent   The ViewGroup into which the new View will be added after it is bound to
-     *                 an adapter position.
-     * @param viewType The view type of the new View.
-     * @return A new ViewHolder that holds a View of the given view type.
-     * @see #getItemViewType(int)
-     * @see # onBindViewHolder(ViewHolder, int)
-     */
     @NonNull
     @Override
     public HistoryRecycleAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       //View view = LayoutInflater.from(C).inflate(R.layout., parent, false);
+       View view = LayoutInflater.from(C).inflate(R.layout.recycler_history_templet,parent, false);
 
         //return new myViewHolder(view);
-    return null;
+    return new myViewHolder(view);
     }
 
 
@@ -82,6 +63,10 @@ public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAd
     @Override
     public void onBindViewHolder(@NonNull HistoryRecycleAdapter.myViewHolder holder, int position) {
 
+
+        holder.historytype.setText(list.get(position).getName());
+        holder.historyprice.setText(String.valueOf(list.get(position).getPrice()));
+        holder.historyqty.setText(String.valueOf(list.get(position).getQty()));
     }
 
     /**
@@ -91,12 +76,30 @@ public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAd
      */
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
-    public class myViewHolder extends RecyclerView.ViewHolder {
+    public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView historytype;
+        TextView historyqty;
+        TextView historyprice;
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            historytype = itemView.findViewById(R.id.hrt_name);
+            historyqty = itemView.findViewById(R.id.hrt_qty);
+            historyprice = itemView.findViewById(R.id.hrt_price);
+            itemView.setOnClickListener(this);
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param view The view that was clicked.
+         */
+        @Override
+        public void onClick(View view) {listener.onItemClicked(getAdapterPosition());
+
         }
     }
 }

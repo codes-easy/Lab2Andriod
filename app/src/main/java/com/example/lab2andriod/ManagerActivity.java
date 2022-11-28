@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class ManagerActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button History, Restock;
-
+    ArrayList<HistoryList> mylist;
 
 
 
@@ -28,6 +28,9 @@ public class ManagerActivity extends AppCompatActivity implements View.OnClickLi
         Restock = findViewById(R.id.Restockbutton);
         History.setOnClickListener(this);
         Restock.setOnClickListener(this);
+
+
+           //test
             }
 
     /**
@@ -38,11 +41,13 @@ public class ManagerActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
 
+
         Button button = (Button) view;
 
         if(button.equals(History)) {
             Intent historyIntent = new Intent(ManagerActivity.this, Historyactivity.class);
             startActivity(historyIntent);
+
         }
         if(button.equals(Restock)) {
             Intent restockIntent = new Intent(ManagerActivity.this, Restockactivity.class);
