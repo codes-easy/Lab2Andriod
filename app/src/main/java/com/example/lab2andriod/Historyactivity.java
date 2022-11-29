@@ -38,8 +38,4 @@ public class Historyactivity extends AppCompatActivity  implements HistoryRecycl
     }
 }
 
-    }
 
-
-}
-}

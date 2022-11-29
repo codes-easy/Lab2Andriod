@@ -24,6 +24,12 @@ public class StoreHistoryData  extends Application {
     }
 
     public ArrayList<HistoryList>  getData(){
+
         return this.histroyListData;
+    }
+
+    public HistoryList  getData(int index){
+
+        return this.histroyListData.get(index);
     }
 }
