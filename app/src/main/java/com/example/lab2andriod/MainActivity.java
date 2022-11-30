@@ -42,13 +42,14 @@ public class MainActivity extends AppCompatActivity
         listView1 = findViewById(R.id.listview_products);
 
 
-        Product p1=new Product("Pants",20.44, 10);
-        Product p2= new Product("Shoes",10.44, 100);
-        Product p3=new Product("Hats",5.9, 30);
+      //  Product p1=new Product("Pants",20.44, 10);
+      //  Product p2= new Product("Shoes",10.44, 100);
+      //  Product p3=new Product("Hats",5.9, 30);
 
-        list.add(p1);
-        list.add(p2);
-        list.add(p3);
+       // list.add(p1);
+       // list.add(p2);
+       // list.add(p3);
+        list = ((StoreHistoryData) getApplication()).getProductListData();
 
        // mainAdapter1 = new MainAdapter(MainActivity.this,list);
         //listView1.setAdapter((ListAdapter) mainAdapter1);

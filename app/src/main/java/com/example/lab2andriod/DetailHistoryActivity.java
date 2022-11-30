@@ -24,7 +24,10 @@ public class DetailHistoryActivity extends AppCompatActivity {
             HistoryList h2 = ((StoreHistoryData) getApplication()).getData(index);
             Toast.makeText(this, "index: "+index, Toast.LENGTH_SHORT).show();
 
-            typetxv.setText("Product : "+h2.getName());
+            typetxv.setText("Product: " +h2.getName() + "\n" +"Price: "+h2.getPrice() +"\n" +"Purchase_date: "+h2.getDate());
+
+
+
         }
 
 

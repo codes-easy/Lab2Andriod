@@ -18,8 +18,6 @@ public class Historyactivity extends AppCompatActivity  implements HistoryRecycl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         int historySize =((StoreHistoryData) getApplication()).getSize();
-       // ArrayList<HistoryList> rr = new ArrayList<HistoryList>();
-      //  rr=((StoreHistoryData) getApplication()).getData();
         RecyclerView recyclerView=findViewById(R.id.rv_historylist);
         HistoryRecycleAdapter adapter=new HistoryRecycleAdapter(((StoreHistoryData) getApplication()).getData(),this);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -29,7 +27,9 @@ public class Historyactivity extends AppCompatActivity  implements HistoryRecycl
     }
 
     @Override
-    public void onItemClicked(int P) { gotoNextActivity(P);}
+    public void onItemClicked(int P) {
+        gotoNextActivity(P);
+    }
 
     private void gotoNextActivity(int P) {
         Intent intent=new Intent(Historyactivity.this,DetailHistoryActivity.class);
