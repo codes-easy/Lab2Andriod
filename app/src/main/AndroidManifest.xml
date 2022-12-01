@@ -18,7 +18,7 @@
             android:exported="false">
             <meta-data
                 android:name="android.app.PARENT_ACTIVITY"
-                android:value="" />
+                android:value=".Historyactivity" />
         </activity>
 
         <activity
@@ -26,7 +26,7 @@
             android:exported="false">
             <meta-data
                 android:name="android.app.PARENT_ACTIVITY"
-                android:value="" />
+                android:value=".ManagerActivity" />
         </activity>
 
         <activity

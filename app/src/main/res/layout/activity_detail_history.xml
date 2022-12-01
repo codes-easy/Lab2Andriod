@@ -24,7 +24,7 @@
             android:layout_margin="3dp"
             android:gravity="center"
             android:maxLines="3"
-            android:text="product"
+            android:text=""
             android:textSize="20sp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_margin="3dp"
             android:gravity="center"
             android:maxLines="3"
-            android:text="price"
+            android:text=""
             android:textSize="20sp" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:layout_margin="3dp"
             android:gravity="center"
             android:maxLines="3"
-            android:text="purchase_date"
+            android:text=""
             android:textSize="20sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
