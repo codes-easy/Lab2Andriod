@@ -29,21 +29,21 @@
     android:foregroundGravity="center"
     >
     <Button
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/restockokbut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ok"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/restockcancelbut"/>
     <Button
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/restockcancelbut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="cancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/restockbutLayout" />
+        app:layout_constraintStart_toEndOf="@id/restockokbut" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

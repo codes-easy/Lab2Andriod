@@ -38,7 +38,7 @@ public class Restockactivity extends AppCompatActivity implements AdapterView.On
 
     private void setListData() {
 
-        adapter = new RestockAdapter(((StoreHistoryData) getApplication()).getProductListData(), this);
+        adapter = new RestockAdapter(((StoreHistoryData) getApplication()).getProductList(), this);
         restockListView.setAdapter(adapter);
        // restockListView.set
     }
@@ -66,9 +66,9 @@ public class Restockactivity extends AppCompatActivity implements AdapterView.On
 
             } else {
 
-                Product p1=((StoreHistoryData)getApplication()).getProductListData().get(selectedIndex);
+                Product p1=((StoreHistoryData)getApplication()).getProductList().get(selectedIndex);
                 p1.setQty(p1.getQty()+Integer.parseInt(modifiedqty.getText().toString()));
-                ((StoreHistoryData)getApplication()).getProductListData().set(selectedIndex,p1);
+                ((StoreHistoryData)getApplication()).getProductList().set(selectedIndex,p1);
                 adapter.notifyDataSetChanged();
             }
         }
@@ -96,6 +96,6 @@ public class Restockactivity extends AppCompatActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectedIndex=position;
-        Toast.makeText(this, ((StoreHistoryData) getApplication()).getProductListData().get(position).getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, ((StoreHistoryData) getApplication()).getProductList().get(position).getName(), Toast.LENGTH_SHORT).show();
     }
 }

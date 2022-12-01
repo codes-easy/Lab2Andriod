@@ -31,7 +31,11 @@ public class StoreHistoryData  extends Application {
         return this.histroyListData.get(index);
     }
 
-    public ArrayList<Product> getProductListData(){
+    public ArrayList<Product>   getProductList(){
+        return this.productList;
+    }
+
+    public ArrayList<Product> setProductListData(){
         if(productList.isEmpty()){
 
 
