@@ -17,16 +17,18 @@
             android:name=".DetailHistoryActivity"
             android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
+                android:name="android.app.PARENT_ACTIVITY"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".Historyactivity"
             android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
+                android:name="android.app.PARENT_ACTIVITY"
                 android:value="" />
         </activity>
+
         <activity
             android:name=".Restockactivity"
             android:exported="false">
@@ -43,12 +45,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 

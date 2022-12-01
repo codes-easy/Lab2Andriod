@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAdapter.myViewHolder> {
 
-
+// class created to show history list view
     interface ItemListener {
         void onItemClicked(int P);
 
@@ -32,7 +32,7 @@ public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAd
 
     @NonNull
     @Override
-    public HistoryRecycleAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HistoryRecycleAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {//setting history view by taking data from context and putting in recycler history templet xml file
        View view = LayoutInflater.from(C).inflate(R.layout.recycler_history_templet,parent, false);
 
         //return new myViewHolder(view);
@@ -62,6 +62,7 @@ public class HistoryRecycleAdapter extends RecyclerView.Adapter<HistoryRecycleAd
      */
     @Override
     public void onBindViewHolder(@NonNull HistoryRecycleAdapter.myViewHolder holder, int position) {
+        //binding name, price and qty to recycleadapter
 
 
         holder.historytype.setText(list.get(position).getName());

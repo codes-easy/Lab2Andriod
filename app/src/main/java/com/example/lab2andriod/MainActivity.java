@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity
     Button one, two, three, four, five, six, seven, eight, nine, zero, buy, clear, managerBtn;
     TextView Producttype, total, qtytype;
 
-    String MERGE = "";
-    ArrayList<Product> list;
-    ArrayList<HistoryList> histoty_list = new ArrayList<>();
-    String regex = "[0-9]+";
-    ListView listView1;
+    String MERGE = ""; //This will merge two numbers on the screen.
+    ArrayList<Product> list; // this is very first product list which will be displayed on create.
+    ArrayList<HistoryList> histoty_list = new ArrayList<>();// History list which will be passed upon pressing Buy Button
+    String regex = "[0-9]+";// defining 0-9 numbers
+    ListView listView1; // this is intital listview shown in xml file
     int Itemindex = 0;
 
     MainAdapter adapter;
@@ -41,23 +41,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
-        list = new ArrayList<>();
+        list = new ArrayList<>(); //new object as list of array list
         listView1 = findViewById(R.id.listview_products);
 
 
-        //  Product p1=new Product("Pants",20.44, 10);
-        //  Product p2= new Product("Shoes",10.44, 100);
-        //  Product p3=new Product("Hats",5.9, 30);
 
-        // list.add(p1);
-        // list.add(p2);
-        // list.add(p3);
-        list = ((StoreHistoryData) getApplication()).setProductListData();
+        list = ((StoreHistoryData) getApplication()).setProductListData(); // setting product list from another data class
 
-        // mainAdapter1 = new MainAdapter(MainActivity.this,list);
-        //listView1.setAdapter((ListAdapter) mainAdapter1);
         ImplementAdeptor();
-      //  setListData();
+
         one = findViewById(R.id.onebut);
         two = findViewById(R.id.twobut);
         three = findViewById(R.id.threebut);
@@ -87,10 +79,7 @@ public class MainActivity extends AppCompatActivity
         nine.setOnClickListener(this);
         zero.setOnClickListener(this);
         clear.setOnClickListener(this);
-        //Producttype.setOnClickListener(this);
-        //qtytype.setOnClickListener(this);
         buy.setOnClickListener(this);
-        //total.setOnClickListener(this);
         listView1.setOnItemClickListener(this);
         managerBtn.setOnClickListener(this);
 
@@ -98,67 +87,61 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        Button button = (Button) view;
-        String qtytopurchase = button.getText().toString();
-        HistoryList h1;
-        if (qtytopurchase.equals(clear.getText())) {
-            qtytype.setText("");
-            MERGE = "";
+        Button button = (Button) view; // button class
+        String qtytopurchase = button.getText().toString(); // defining qtytopurchase
+        HistoryList h1; // created new class for historylist
+        if (qtytopurchase.equals(clear.getText())) { //functionality of clear button
+            qtytype.setText(""); // 4 conditions - no qtytyp mentioned
+            MERGE = "";  // no number typed
             total.setText("");
             Producttype.setText("");
 
         } else if (qtytopurchase.matches(regex)) {
-            MERGE = MERGE + qtytopurchase;
+            MERGE = MERGE + qtytopurchase; // adding number to qty to purchase for double digit
 
-            qtytype.setText(MERGE);
+            qtytype.setText(MERGE); //taking qty as merge number
 
         }
-        if (button.equals(buy)) {
-            double TotalPrice = Double.parseDouble(qtytype.getText().toString()) * list.get(Itemindex).getPrice();
+        if (button.equals(buy)) { // Buy button functionality
 
-
-            int newQty = (list.get(Itemindex).qty - Integer.parseInt(qtytype.getText().toString()));
-            //Toast.makeText(this, ((String) ("New qty " + newQty)), Toast.LENGTH_LONG).show();
-
-
-            //new Product("Pants",20.44, 10)
+            double TotalPrice = Double.parseDouble(qtytype.getText().toString()) * list.get(Itemindex).getPrice();//determining price
+            int newQty = (list.get(Itemindex).qty - Integer.parseInt(qtytype.getText().toString())); // updating qty
             list.set(Itemindex,
-                    new Product(list.get(Itemindex).getName(), list.get(Itemindex).getPrice(), newQty > 0 ? newQty : 0));
-
+                    new Product(list.get(Itemindex).getName(), list.get(Itemindex).getPrice(), newQty > 0 ? newQty : 0)); // condition for not gettin more than avialable qty
 
             if (newQty < 0) {
-                Toast.makeText(this, "Wrong qty.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Wrong qty.", Toast.LENGTH_LONG).show(); // condition for non negative qty and qty higher than available
             } else {
-                showAlert(TotalPrice, qtytype.getText().toString());
+                showAlert(TotalPrice, qtytype.getText().toString()); // showing alert msg for purchase made
                 ImplementAdeptor();
 
                 total.setText("" + TotalPrice);
 
-                h1 = new HistoryList(list.get(Itemindex).getName(),
+                h1 = new HistoryList(list.get(Itemindex).getName(), // adding purchase in history list
                         TotalPrice, Integer.parseInt(qtytype.getText().toString()), new Date().toString());
 
                 histoty_list.add(h1);
 
             }
         }
-        if (button.equals(managerBtn)) {
+        if (button.equals(managerBtn)) { // Managerbutton functionality
 
-            ((StoreHistoryData) getApplication()).setData(histoty_list);
-            ((StoreHistoryData) getApplication()).setSize(histoty_list.size());
+            ((StoreHistoryData) getApplication()).setData(histoty_list); //whole array will fetch
+            ((StoreHistoryData) getApplication()).setSize(histoty_list.size());//array size will fetch
 
             Intent firstIntent = new Intent(MainActivity.this, ManagerActivity.class);
-            startActivity(firstIntent);
+            startActivity(firstIntent); // transition to second page in screen
             //firstIntent.putExtra("HISTORYDATA", histoty_list);
         }
 
     }
 
-    private void setListData() {
+    private void setListData() { // setting of updated data to main screen
         ((StoreHistoryData) getApplication()).setProductListData();
 
-        list = ((StoreHistoryData) getApplication()).getProductList();
+        list = ((StoreHistoryData) getApplication()).getProductList(); //taking data from storehistorydata class
 
-        adapter = new MainAdapter( MainActivity.this, list);
+        adapter = new MainAdapter( MainActivity.this, list); // adapter class from Main adapter to update first listview
         listView1.setAdapter(adapter);
     }
 
@@ -169,7 +152,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void showAlert(double TotalPrice, String Qty) {
+    private void showAlert(double TotalPrice, String Qty) { // Alert dialog builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Your purchase is " + Qty + " " + list.get(Itemindex).getName() +
                         " for $" + String.format("%.2f", TotalPrice))
@@ -184,12 +167,12 @@ public class MainActivity extends AppCompatActivity
         builder.show();
     }
 
-    private void ImplementAdeptor() {
+    private void ImplementAdeptor() {//using this adapter to update listview
         adapter = new MainAdapter(MainActivity.this, list);
         listView1.setAdapter((ListAdapter) adapter);
     }
 
-    protected void onResume() {
+    protected void onResume() {//updating list view and history view when resuming
         super.onResume();
         adapter.notifyDataSetChanged();
 

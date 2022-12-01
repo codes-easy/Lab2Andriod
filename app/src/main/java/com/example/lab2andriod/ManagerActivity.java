@@ -20,7 +20,7 @@ public class ManagerActivity extends AppCompatActivity implements View.OnClickLi
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //basic functionality of manager button
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
@@ -39,7 +39,7 @@ public class ManagerActivity extends AppCompatActivity implements View.OnClickLi
      * @param view The view that was clicked.
      */
     @Override
-    public void onClick(View view) {
+    public void onClick(View view) {//Manager button will direct to two buttons and two new screens
 
 
         Button button = (Button) view;

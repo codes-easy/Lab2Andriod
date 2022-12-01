@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainAdapter extends BaseAdapter {
+public class MainAdapter extends BaseAdapter { //Mainadapter for first viewlist
     MainActivity mainActivity; ArrayList<Product> list;
-    LayoutInflater layoutInflater;
+    LayoutInflater layoutInflater; //a new view creation using list view
 
     public MainAdapter(MainActivity mainActivity, ArrayList<Product> list) {
         this.mainActivity = mainActivity;
@@ -25,23 +25,24 @@ public class MainAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         return list.size();
-    }
+    } //getting list size
 
 
     @Override
     public Object getItem(int i) {
         return list.get(i);
-    }
+    }//getting item list
 
 
     @Override
     public long getItemId(int i) {
         return i;
-    }
+    } //getting item id
 
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View view, ViewGroup viewGroup) {//creation of funciton to read and
+        //setting all id in listview.
 
             View rowView = view;
             if (rowView==null) {

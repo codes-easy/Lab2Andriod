@@ -1,6 +1,6 @@
 package com.example.lab2andriod;
 
-public class Product {
+public class Product {//definng products and getting and setting its name, price and qty
     
     String name;
     double price;
